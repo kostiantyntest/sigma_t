@@ -4,6 +4,8 @@ description: Adversaries may try to evade defense by using non-default command l
   arguments for legit tools.
 author: SOC Prime Team
 status: stable
+date: 2018/01/11
+modified: 2029/11/11
 references:
 - https://thedfirreport.com/2022/04/25/quantum-ransomware/
 - https://github.com/dirkjanm/CVE-2020-1472
