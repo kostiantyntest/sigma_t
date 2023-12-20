@@ -1,0 +1,23 @@
+title: rtest2
+id: 0e802cb8-555c-481e-a33c-ffa0f31e20f8
+status: stable
+description: |
+  Before deploying any new asset, change all default passwords to have values consistent with administrative level accounts.
+references:
+    - https://www.cisecurity.org/controls/cis-controls-list/
+    - https://www.pcisecuritystandards.org/documents/PCI_DSS_v3-2-1.pdf
+author: Alexandr Yampolskyi, SOC Prime
+date: 2019/03/26
+logsource:
+    product: qualys
+detection:
+    selection:
+        host.scan.vuln:
+            - 103434693
+            - 11343507
+            - 11343633
+            - 113434804
+    condition: selection
+falsepositives:
+    - Unknown
+level: medium
