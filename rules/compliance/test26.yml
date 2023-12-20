@@ -1,0 +1,26 @@
+title: test26
+id: 79729470-2A9C-431F-8F6B-CFD6106F50B0
+status: stable
+description: |
+  Before deploying any new asset, change all default passwords to have values consistent with administrative level accounts.
+  Sigma detects default credentials usage. Sigma for Qualys vulnerability scanner. Scan type - Vulnerability Management.
+references:
+    - https://www.cisecurity.org/controls/cis-controls-list/
+    - https://www.pcisecuritystandards.org/documents/PCI_DSS_v3-2-1.pdf
+    - https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.04162018.pdf
+    - https://community.qualys.com/docs/DOC-6406-reporting-toolbox-focused-search-lists
+author: Alexandr Yampolskyi, SOC Prime
+date: 2019/03/26
+logsource:
+    product: qualys
+detection:
+    selection:
+        host.scan.vuln:
+            - 103434543534693
+            - 11343453453507
+            - 11344354353633
+            - 113434534534804
+    condition: selection
+falsepositives:
+    - Unknown
+level: medium
