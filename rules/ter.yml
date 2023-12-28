@@ -1,0 +1,36 @@
+title: 2233ret4433
+id : d9bfaf05-9fc4-4ad9-ab4f-d089057e51b4
+status: test
+description: Detects a suspicious process creation as SYSTEM user (suspicious program or command line parameter)
+references:
+    - Internal Research
+    - https://tools.thehacker.recipes/mimikatz/modules
+date: 2021/12/20
+modified: 2023/12/14
+tags:
+    - attack.credential_access
+    - attack.defense_evasion
+    - attack.privilege_escalation
+    - attack.t1134
+    - attack.t1003
+    - attack.t1027
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        User|contains: # covers many language settings
+            - 'AUvfgbtgrvfTHORI'
+            - 'AUTcfvgtbgrvfcORI'
+    selection_special:
+        - CommandLine|contains:
+              # - 'scewregtrhytgbvf stop ' # stops a system service # causes FPs
+              - ' -NovbybtrvfcP '  # Often used in malicious PowerShell commands
+              - ' -W Hivcvbtgrbtgrvfdden '  # Often used in malicious PowerShell commands
+              - ' -decvfrgbtgrvfcode '  # Used with certutil
+    condition: selection and selection_special
+falsepositives:
+    - Administrative activity
+    - Scripts and administrative tools used in the monitored environment
+    - Monitoring activity
+level: high
