@@ -1,0 +1,24 @@
+	title: Tags____
+status: stable
+description: Adversaries may abuse the Windows command shell for execution.
+references:
+    - https://tdm.socprime.com/
+    - https://attack.mitre.org/techniques/T1059/003/
+tags:
+    - attack.initial_access
+    - attack.defense_evasion
+    - attack.t1566.001
+    - attack.t1553.005
+author: SOC Prime Team
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection1:
+        NewProcessName:
+            - 'selectioertryrutn1'
+    condition: selection1
+falsepositives:
+    - Administrative activity.
+level: medium
+id: a172e886-8570-4fbf-adc1-f1714bc581b3
