@@ -1,4 +1,4 @@
-	title: Tags____
+title: Tags____
 status: stable
 description: Adversaries may abuse the Windows command shell for execution.
 references:
@@ -21,4 +21,4 @@ detection:
 falsepositives:
     - Administrative activity.
 level: medium
-id: a172e886-8570-4fbf-adc1-f1714bc581b3
+id: ca4ddc01-a916-4dd9-a8fe-e89821790024
