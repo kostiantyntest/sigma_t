@@ -1,0 +1,36 @@
+title: For Ruta test sync
+id: aa21f5a4-104a-4b0b-bf6c-521d4995d4a9
+status: stable
+description: Adversaries may Search or Search-MS URI Protocoll to execute malicious payload on host.CVE-2023-34039, CVE-2023-28725
+references:
+    - https://blog.talosintelligence.com/qakbot-affiliated-actors-distribute-ransom/
+    - https://x.com/anyrun_app/status/1703738919576109347
+    - https://twitter.com/Max_Mal_/status/1701530387896230202?s=20
+    - https://www.trellix.com/en-us/about/newsroom/stories/research/beyond-file-search-a-novel-method.html
+tags:
+    - contentlist
+    - cir_ttps
+    - stop*
+    - test*
+    - 2344
+    - attack34
+    - SearchPage
+    - sigma2savelives
+    - s2s
+    - s2sl
+author: SOC Prime Team
+logsource:
+    category: process_creation
+    product: windows
+    service: notepad
+detection:
+    selection_bins:
+        Image|endswith:
+            - 'regsvrertreytuyuertertert32.exe'
+            - 'powerter,jmhngbfvdtershell.exe'
+            - 'wscriertr34567890ertpt.exe'
+            - 'cscrsfdsfdsfsdfipt.exe'
+    condition: selection_bins
+falsepositives:
+    - Unknown.
+level: high
