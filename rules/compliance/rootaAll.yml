@@ -1,0 +1,22 @@
+title: Credential %%% Comsvcs.dll
+id: 248063f1-5fc3-4ad6-af49-ddd0dbceb710
+description: Adversaries can use built-in library comsvcs.dll to dump credentials
+  on a compromised host.
+status: experimental
+author: SOC Prime Team
+references:
+- https://badoption.eu/blog/2023/06/21/dumpit.html
+tags:
+- T1003.001
+logsource:
+  product: windows
+  service: security
+fields: []
+detection:
+  selection1:
+    EventID: 4688
+    CommandLine|contains: selection
+  condition: selection1
+level: high
+falsepositives: 
+- ''
