@@ -1,5 +1,5 @@
 title: TestPalo
-id: a471bb20-9276-495c-991f-dad8106caaf5
+id: 2592fa08-be11-438c-a42c-a4cfcfaf9c61
 status: stable
 description: |
   Before deploying any new asset, change all default passwords to have values consistent with administrative level accounts.
@@ -12,7 +12,7 @@ logsource:
     product: qualys
 detection:
     selection:
-        host.scan.vuln:
+        Image:
             - 103434693
             - 11343507
             - 11343633
