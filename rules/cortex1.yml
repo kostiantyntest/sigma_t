@@ -1,0 +1,23 @@
+title: CheckCortex2
+status: stable
+date: 2019/04/17
+description: Adversaries may abuse the Windows command shell for execution.
+references:
+    - https://tdm.socprime.com/
+    - https://attack.mitre.org/techniques/T1059/003/
+tags:
+    - attack.execution
+    - attack.t1059.003
+author: SOC Prime Team
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        CommandLine:
+            - 'qwertasd34567fgzxcvb'
+    condition: selection
+falsepositives:
+    - Administrative activity.
+level: medium
+id: d716c5a0-2f25-49e4-8480-6cf1de81ffe8
