@@ -1,0 +1,25 @@
+title: Python SQL Exceptions
+id: 6621eda2-0bf3-4e17-b762-3ea23f451874
+status: stable
+description: Generic rule for SQL exceptions in Python according to PEP 249
+references:
+    - https://www.python.org/dev/peps/pep-0249/#exceptions
+author: Thomas Patzke
+date: 2017/08/12
+modified: 2020/09/01
+tags:
+    - attack.initial_access
+    - attack.t1190
+logsource:
+    category: application
+    product: python
+detection:
+    keywords:
+        - DataError
+        - IntegrityError
+        - ProgrammingError
+        - OperationalError
+    condition: keywords
+falsepositives:
+    - Application bugs
+level: medium
