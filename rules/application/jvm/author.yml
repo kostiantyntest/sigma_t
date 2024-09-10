@@ -1,0 +1,36 @@
+title: Exceptions
+id: 7b66120d-2947-4a6a-a931-047343e8ffb4
+status: stable
+description: Detects suspicious Django web application framework exceptions that could indicate exploitation attempts
+references:
+    - https://docs.djangoproject.com/en/1.11/ref/exceptions/
+    - https://docs.djangoproject.com/en/1.11/topics/logging/#django-security
+author: OSCD Community
+date: 2017/08/05
+modified: 2020/09/01
+tags:
+    - attack.initial_access
+    - attack.t1190
+logsource:
+    category: application
+    product: django
+detection:
+    keywords:
+        - SuspiciousOperation
+        # Subclasses of SuspiciousOperation
+        - DisallowedHost
+        - DisallowedModelAdminLookup
+        - DisallowedModelAdminToField
+        - DisallowedRedirect
+        - InvalidSessionKey
+        - RequestDataTooBig
+        - SuspiciousFileOperation
+        - SuspiciousMultipartForm
+        - SuspiciousSession
+        - TooManyFieldsSent
+        # Further security-related exceptions
+        - PermissionDenied
+    condition: keywords
+falsepositives:
+    - Application bugs
+level: medium
