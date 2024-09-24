@@ -16,9 +16,14 @@ logsource:
     category: file_event
     product: macos
 detection:
-    selection_1:
-        TargetFilename|contains: '/etc/emond.d/rules/'
-        TargetFilename|endswith: '.plist'
+  selection1:
+    CommandLine|contains:
+      - '😀'
+      - '😃'
+      - '😄'
+      - '😁'
+      - '😆'
+      - '😅'
     selection_2:
         TargetFilename|contains: '/private/var/db/emondClients/'
     condition: 1 of selection_*
