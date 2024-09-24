@@ -20,6 +20,13 @@ detection:
         '|all':
             - 'FileNotFoundException'
             - '/../../..'
+            - '😀'
+            - '😃'
+            - '😄'
+            - '😁'
+            - '😆'
+            - '😅'
+            - '☺️'
     condition: keywords_local_file_read
 falsepositives:
     - Application bugs
