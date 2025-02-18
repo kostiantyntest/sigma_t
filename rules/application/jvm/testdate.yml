@@ -1,6 +1,7 @@
 title: Kubernetes
 id: 55d82177-38f5-4299-8a76-098d50d225ab
 status: experimental
+date: 2017-08-12
 description: |
     Detects when a modification (create, update or replace) action is taken that affects mutating or validating webhook configurations, as they can be used by an adversary to achieve persistence or exfiltrate access credentials.
 references:
